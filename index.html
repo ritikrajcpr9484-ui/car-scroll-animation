@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Ritik - Car Scroll Animation</title>
+
+    <style>
+
+        /* =========================
+           BASIC PAGE
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #d3d3d3;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           MAIN HERO
+        ========================= */
+
+        #rr-car-hero {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #d3d3d3;
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           ROAD
+        ========================= */
+
+        #rr-car-hero .rr-road {
+            position: absolute;
+
+            left: 0;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 100%;
+            height: 300px;
+
+            background: #111111;
+
+            overflow: visible;
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           WELCOME TEXT
+        ========================= */
+
+        #rr-car-hero .rr-text {
+            position: absolute;
+
+            left: 0;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            white-space: nowrap;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 78px;
+            font-weight: 900;
+
+            color: #ffffff;
+
+            z-index: 6;
+
+            clip-path: inset(0 100% 0 0);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           CAR
+        ========================= */
+
+        #rr-car-hero .rr-car {
+            position: absolute;
+
+            left: -165px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            height: 390px;
+            width: auto;
+            max-width: none;
+
+            z-index: 10;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           SERVICE BOXES
+        ========================= */
+
+        #rr-car-hero .rr-top-services,
+        #rr-car-hero .rr-bottom-services {
+
+            position: absolute;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 800px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 35px;
+
+            opacity: 0;
+
+            transition: opacity 0.7s ease;
+
+            z-index: 20;
+        }
+
+
+        /* TOP SERVICES */
+
+        #rr-car-hero .rr-top-services {
+            top: 25px;
+        }
+
+
+        /* BOTTOM SERVICES */
+
+        #rr-car-hero .rr-bottom-services {
+            bottom: 25px;
+        }
+
+
+        /* =========================
+           SERVICE CARDS
+        ========================= */
+
+        #rr-car-hero .rr-card {
+
+            min-height: 110px;
+
+            padding: 22px;
+
+            border-radius: 16px;
+
+            box-sizing: border-box;
+
+            font-family: Arial, sans-serif;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.20);
+        }
+
+
+        /* CARD HEADING */
+
+        #rr-car-hero .rr-card h3 {
+
+            margin: 0 0 10px 0;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color: #111111;
+        }
+
+
+        /* CARD PARAGRAPH */
+
+        #rr-car-hero .rr-card p {
+
+            margin: 0;
+
+            font-size: 15px;
+
+            line-height: 1.4;
+
+            color: #222222;
+        }
+
+
+        /* =========================
+           CARD COLORS
+        ========================= */
+
+        #rr-car-hero .rr-yellow {
+            background: #eaff00;
+        }
+
+        #rr-car-hero .rr-green {
+            background: #39e879;
+        }
+
+        #rr-car-hero .rr-orange {
+            background: #ff7426;
+        }
+
+        #rr-car-hero .rr-violet {
+            background: #a879ff;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            #rr-car-hero {
+                height: 550px;
+            }
+
+            #rr-car-hero .rr-road {
+                height: 220px;
+            }
+
+            #rr-car-hero .rr-car {
+                height: 290px;
+                left: -120px;
+            }
+
+            #rr-car-hero .rr-text {
+                font-size: 42px;
+            }
+
+            #rr-car-hero .rr-top-services,
+            #rr-car-hero .rr-bottom-services {
+
+                width: 92%;
+
+                gap: 10px;
+            }
+
+            #rr-car-hero .rr-card {
+
+                min-height: 85px;
+
+                padding: 12px;
+            }
+
+            #rr-car-hero .rr-card h3 {
+
+                font-size: 17px;
+            }
+
+            #rr-car-hero .rr-card p {
+
+                font-size: 11px;
+            }
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            #rr-car-hero {
+                height: 520px;
+            }
+
+            #rr-car-hero .rr-road {
+                height: 210px;
+            }
+
+            #rr-car-hero .rr-car {
+                height: 240px;
+                left: -100px;
+            }
+
+            #rr-car-hero .rr-text {
+                font-size: 34px;
+            }
+
+            #rr-car-hero .rr-card {
+                min-height: 75px;
+                padding: 10px;
+            }
+
+            #rr-car-hero .rr-card h3 {
+                font-size: 14px;
+            }
+
+            #rr-car-hero .rr-card p {
+                font-size: 10px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MAIN HERO
+    ========================= -->
+
+    <div id="rr-car-hero">
+
+
+        <!-- =========================
+             ROAD
+        ========================= -->
+
+        <div class="rr-road">
+
+
+            <!-- =========================
+                 WELCOME TEXT
+            ========================= -->
+
+            <div class="rr-text">
+                WELCOME TO DIGITAL RITIK
+            </div>
+
+
+            <!-- =========================
+                 CAR
+            ========================= -->
+
+            <img
+                class="rr-car"
+                src="https://ritikrajdigital.com/wp-content/uploads/2026/10/Untitled_design__91_-removebg-preview-1.png"
+                alt="Digital Ritik Car"
+            >
+
+        </div>
+
+
+        <!-- =========================
+             TOP SERVICE BOXES
+        ========================= -->
+
+        <div class="rr-top-services">
+
+
+            <div class="rr-card rr-yellow">
+
+                <h3>
+                    Web Designing
+                </h3>
+
+                <p>
+                    Creative and responsive website designs.
+                </p>
+
+            </div>
+
+
+            <div class="rr-card rr-green">
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Modern and powerful websites for businesses.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             BOTTOM SERVICE BOXES
+        ========================= -->
+
+        <div class="rr-bottom-services">
+
+
+            <div class="rr-card rr-orange">
+
+                <h3>
+                    SEO
+                </h3>
+
+                <p>
+                    Improve your search visibility and online presence.
+                </p>
+
+            </div>
+
+
+            <div class="rr-card rr-violet">
+
+                <h3>
+                    Meta Ads
+                </h3>
+
+                <p>
+                    Reach the right audience with targeted advertising.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        (function () {
+
+
+            /* =========================
+               GET ELEMENTS
+            ========================= */
+
+            const hero =
+                document.getElementById("rr-car-hero");
+
+            if (!hero) return;
+
+
+            const car =
+                hero.querySelector(".rr-car");
+
+            const text =
+                hero.querySelector(".rr-text");
+
+            const road =
+                hero.querySelector(".rr-road");
+
+            const topServices =
+                hero.querySelector(".rr-top-services");
+
+            const bottomServices =
+                hero.querySelector(".rr-bottom-services");
+
+
+            /* =========================
+               MOVEMENT VARIABLES
+            ========================= */
+
+            let targetProgress = 0;
+
+            let currentProgress = 0;
+
+
+            /*
+               Controls how much the car
+               moves for each wheel movement.
+            */
+
+            const scrollSpeed = 0.035;
+
+
+            /*
+               Controls smoothness.
+            */
+
+            const smoothness = 0.055;
+
+
+            /* =========================
+               ANIMATION
+            ========================= */
+
+            function animate() {
+
+
+                /*
+                   Smoothly move current
+                   position toward target.
+                */
+
+                currentProgress +=
+                    (targetProgress - currentProgress)
+                    * smoothness;
+
+
+                /* =========================
+                   CAR MOVEMENT
+                ========================= */
+
+                const carWidth =
+                    car.offsetWidth;
+
+
+                const totalDistance =
+                    hero.offsetWidth +
+                    carWidth +
+                    80;
+
+
+                const carPosition =
+                    (currentProgress / 100)
+                    * totalDistance;
+
+
+                /*
+                   Start from the corrected
+                   position for the PNG.
+                */
+
+                car.style.left =
+                    (-165 + carPosition) + "px";
+
+
+                /* =========================
+                   TEXT REVEAL
+                ========================= */
+
+                const revealPosition =
+                    Math.max(
+                        0,
+                        carPosition - 40
+                    );
+
+
+                const textWidth =
+                    text.scrollWidth;
+
+
+                const revealPercent =
+                    Math.min(
+                        100,
+                        (revealPosition / textWidth) * 100
+                    );
+
+
+                text.style.clipPath =
+                    "inset(0 " +
+                    (100 - revealPercent) +
+                    "% 0 0)";
+
+
+                /* =========================
+                   ROAD COLOR
+                =========================
+
+                   Behind car:
+                   Pale Yellow
+
+                   Ahead of car:
+                   Black
+                */
+
+                const yellowEnd =
+                    Math.min(
+                        100,
+                        (carPosition / hero.offsetWidth) * 100
+                    );
+
+
+                road.style.background =
+                    "linear-gradient(" +
+                    "to right, " +
+
+                    "#FFF3B0 0%, " +
+
+                    "#FFF3B0 " +
+                    yellowEnd +
+                    "%, " +
+
+                    "#111111 " +
+                    yellowEnd +
+                    "%, " +
+
+                    "#111111 100%" +
+                    ")";
+
+
+                /* =========================
+                   SERVICE BOXES
+                ========================= */
+
+                if (currentProgress >= 50) {
+
+                    topServices.style.opacity = "1";
+
+                    bottomServices.style.opacity = "1";
+
+                } else {
+
+                    topServices.style.opacity = "0";
+
+                    bottomServices.style.opacity = "0";
+
+                }
+
+
+                /* =========================
+                   CONTINUE ANIMATION
+                ========================= */
+
+                requestAnimationFrame(animate);
+
+            }
+
+
+            /* =========================
+               MOUSE / WHEEL SCROLL
+            ========================= */
+
+            hero.addEventListener(
+                "wheel",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    targetProgress +=
+                        event.deltaY * scrollSpeed;
+
+
+                    /*
+                       Keep progress between
+                       0 and 100.
+                    */
+
+                    targetProgress =
+                        Math.max(
+                            0,
+                            Math.min(
+                                100,
+                                targetProgress
+                            )
+                        );
+
+                },
+                {
+                    passive: false
+                }
+            );
+
+
+            /* =========================
+               START
+            ========================= */
+
+            animate();
+
+
+        })();
+
+    </script>
+
+
+</body>
+</html>
